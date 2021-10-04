@@ -250,7 +250,7 @@ var SlimScroll = (function () {
             railBorderRadius: '7px',
 
             // slow down delta factor during mobile scroll
-            slowDownFactor: 1,
+            slowDownTouchFactor: 1,
             
         };
 
@@ -407,7 +407,7 @@ var SlimScroll = (function () {
                     // see how far user swiped
                     var diff = (touchDif - e.touches[0].pageY) / o.touchScrollStep;
                     // scroll content
-                    scrollContent(diff, true, false, o.slowDownFactor);
+                    scrollContent(diff, true, false, o.slowDownTouchFactor);
                     touchDif = e.touches[0].pageY;
                 }
             },
@@ -522,7 +522,7 @@ var SlimScroll = (function () {
             if (!releaseScroll) { e.returnValue = false; }
         }
 
-        function scrollContent(y, isWheel, isJump, isSlowedByFactor) {
+        function scrollContent(y, isWheel, isJump, isSlowedByFactor=1) {
             releaseScroll = false;
             var delta = y;
             var maxTop = me.outerHeight() - bar.outerHeight();
@@ -549,12 +549,12 @@ var SlimScroll = (function () {
             // delta = percentScroll * (me[0].scrollHeight - me.outerHeight());
             delta = percentScroll * (me.el.scrollHeight - me.outerHeight());
 
+
             // Slow delta down!
             delta = delta / isSlowedByFactor
 
             if (isJump) {
                 delta = y;
-                // var offsetTop = delta / me[0].scrollHeight * me.outerHeight();
                 var offsetTop = delta / me.el.scrollHeight * me.outerHeight();
                 offsetTop = Math.min(Math.max(offsetTop, 0), maxTop);
                 bar.css({ top: offsetTop + 'px' });
