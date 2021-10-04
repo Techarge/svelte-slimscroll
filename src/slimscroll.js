@@ -248,6 +248,9 @@ var SlimScroll = (function () {
 
             // sets border radius of the rail
             railBorderRadius: '7px',
+
+            // slow down delta factor during mobile scroll
+            slowDownFactor: 1,
             
         };
 
@@ -404,7 +407,7 @@ var SlimScroll = (function () {
                     // see how far user swiped
                     var diff = (touchDif - e.touches[0].pageY) / o.touchScrollStep;
                     // scroll content
-                    scrollContent(diff, true);
+                    scrollContent(diff, true, false, o.slowDownFactor);
                     touchDif = e.touches[0].pageY;
                 }
             },
@@ -519,7 +522,7 @@ var SlimScroll = (function () {
             if (!releaseScroll) { e.returnValue = false; }
         }
 
-        function scrollContent(y, isWheel, isJump) {
+        function scrollContent(y, isWheel, isJump, isSlowedByFactor) {
             releaseScroll = false;
             var delta = y;
             var maxTop = me.outerHeight() - bar.outerHeight();
@@ -545,9 +548,9 @@ var SlimScroll = (function () {
             percentScroll = parseInt(bar.css('top')) / (me.outerHeight() - bar.outerHeight());
             // delta = percentScroll * (me[0].scrollHeight - me.outerHeight());
             delta = percentScroll * (me.el.scrollHeight - me.outerHeight());
+
             // Slow delta down!
-            const slowDownFactor = 6
-            delta = delta / slowDownFactor
+            delta = delta / isSlowedByFactor
 
             if (isJump) {
                 delta = y;
