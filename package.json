@@ -1,14 +1,17 @@
 {
-  "name": "svelte-slimscroll",
-  "version": "1.0.6",
+  "name": "@Techarge/svelte-slimscroll",
+  "version": "1.0.8",
   "description": "svelte-slimscroll is a action for Svelte.js, which can transforms any div into a scrollable area with a nice scrollbar.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MelihAltintas/svelte-slimscroll"
+    "url": "https://github.com/Techarge/svelte-slimscroll"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "homepage": "",
   "bugs": {
-    "url": "https://github.com/MelihAltintas/svelte-slimscroll/issues"
+    "url": "https://github.com/Techarge/svelte-slimscroll/issues"
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -22,7 +25,7 @@
     "svelte",
     "svelte-scroll"
   ],
-  "author": "Melih Altıntaş",
+  "author": "Techarge",
   "license": "MIT",
   "devDependencies": {
     "rollup": "^2.33.1",

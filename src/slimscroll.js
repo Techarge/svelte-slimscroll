@@ -247,7 +247,8 @@ var SlimScroll = (function () {
             borderRadius: '7px',
 
             // sets border radius of the rail
-            railBorderRadius: '7px'
+            railBorderRadius: '7px',
+            
         };
 
 
@@ -389,7 +390,6 @@ var SlimScroll = (function () {
         //all binding events callback
         var events = {
             touchStart: function (e, b) {
-               
                 if (e.touches.length) {
                     // record where touch started
                     touchDif = e.touches[0].pageY;
@@ -545,6 +545,9 @@ var SlimScroll = (function () {
             percentScroll = parseInt(bar.css('top')) / (me.outerHeight() - bar.outerHeight());
             // delta = percentScroll * (me[0].scrollHeight - me.outerHeight());
             delta = percentScroll * (me.el.scrollHeight - me.outerHeight());
+            // Slow delta waaaaaay down!
+            const slowDownFactor = 6
+            delta = delta / slowDownFactor
 
             if (isJump) {
                 delta = y;
