@@ -17,6 +17,7 @@
   "module": "dist/index.mjs",
   "svelte": "src/index.js",
   "scripts": {
+    "watch": "rollup -c --watch",
     "build": "rollup -c",
     "dev": "rollup -c -w"
   },

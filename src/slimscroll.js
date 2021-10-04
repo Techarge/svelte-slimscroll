@@ -545,7 +545,7 @@ var SlimScroll = (function () {
             percentScroll = parseInt(bar.css('top')) / (me.outerHeight() - bar.outerHeight());
             // delta = percentScroll * (me[0].scrollHeight - me.outerHeight());
             delta = percentScroll * (me.el.scrollHeight - me.outerHeight());
-            // Slow delta waaaaaay down!
+            // Slow delta down!
             const slowDownFactor = 6
             delta = delta / slowDownFactor
 
